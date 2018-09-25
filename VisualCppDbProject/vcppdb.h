@@ -9,6 +9,7 @@ namespace VisualCppDbProject {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace MySql::Data::MySqlClient;
+	using namespace System::IO;
 
 	/// <summary>
 	/// Summary for vcppdb
@@ -52,6 +53,8 @@ namespace VisualCppDbProject {
 	private: System::Windows::Forms::DataGridView^  dataGridView1;
 	private: System::Windows::Forms::BindingSource^  bindingSource1;
 	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::Button^  button6;
+
 	private: System::ComponentModel::IContainer^  components;
 
 	private:
@@ -84,6 +87,7 @@ namespace VisualCppDbProject {
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->bindingSource1 = (gcnew System::Windows::Forms::BindingSource(this->components));
 			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->button6 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource1))->BeginInit();
 			this->SuspendLayout();
@@ -174,7 +178,7 @@ namespace VisualCppDbProject {
 			// 
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(127, 552);
+			this->button1->Location = System::Drawing::Point(48, 552);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(67, 40);
 			this->button1->TabIndex = 8;
@@ -186,7 +190,7 @@ namespace VisualCppDbProject {
 			// 
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(262, 552);
+			this->button2->Location = System::Drawing::Point(173, 552);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(147, 40);
 			this->button2->TabIndex = 9;
@@ -237,6 +241,7 @@ namespace VisualCppDbProject {
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->Size = System::Drawing::Size(422, 209);
 			this->dataGridView1->TabIndex = 13;
+			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &vcppdb::dataGridView1_CellContentClick);
 			// 
 			// label5
 			// 
@@ -250,11 +255,24 @@ namespace VisualCppDbProject {
 			this->label5->Text = L"List Database";
 			this->label5->Click += gcnew System::EventHandler(this, &vcppdb::label5_Click);
 			// 
+			// button6
+			// 
+			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button6->Location = System::Drawing::Point(386, 552);
+			this->button6->Name = L"button6";
+			this->button6->Size = System::Drawing::Size(84, 40);
+			this->button6->TabIndex = 15;
+			this->button6->Text = L"Cetak";
+			this->button6->UseVisualStyleBackColor = true;
+			this->button6->Click += gcnew System::EventHandler(this, &vcppdb::button6_Click);
+			// 
 			// vcppdb
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(528, 604);
+			this->Controls->Add(this->button6);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->button5);
@@ -285,7 +303,7 @@ namespace VisualCppDbProject {
 				//MessageBox::Show("Insert clicked");
 				 try
 				 {
-				 String^ constr = "Server=127.0.0.1;Uid=root;Pwd=*input your password here*;Database=visualcppdb;SslMode=none";
+				 String^ constr = "Server=127.0.0.1;Uid=root;Pwd=*input your database password here* ;Database=visualcppdb";
 				 MySqlConnection^ con = gcnew MySqlConnection(constr);
 
 				 int id = Int32::Parse(textBox1->Text);
@@ -307,7 +325,7 @@ namespace VisualCppDbProject {
 
 			// update db operation
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
-			String^ constr = "Server=127.0.0.1;Uid=root;Pwd=*input your password here*;Database=visualcppdb;SslMode=none";
+			String^ constr = "Server=127.0.0.1;Uid=root;Pwd=*input your database password here* ;Database=visualcppdb";
 			MySqlConnection^ con = gcnew MySqlConnection(constr);			
 			int id = Int32::Parse(textBox1->Text);
 			String^ name = textBox2->Text;
@@ -327,7 +345,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 			
 			 try{
 			 int id = Int32::Parse(textBox1->Text);
-			 String^ constr = "Server=127.0.0.1;Uid=root;Pwd=*input your password here*;Database=visualcppdb;SslMode=none";
+			 String^ constr = "Server=127.0.0.1;Uid=root;Pwd=*input your database password here* ;Database=visualcppdb";
 			 MySqlConnection^ con = gcnew MySqlConnection(constr);
 			 MySqlCommand^ cmd = gcnew MySqlCommand("select * from userinfotbl WHERE id="+id+"",con);
 			 con->Open();
@@ -347,7 +365,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		 }
 		 // fetch all button
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-			String^ constr = "Server=127.0.0.1;Uid=root;Pwd=*input your password here*;Database=visualcppdb;SslMode=none";
+			String^ constr = "Server=127.0.0.1;Uid=root;Pwd=*input your database password here* ;Database=visualcppdb";
 			MySqlConnection^ con = gcnew MySqlConnection(constr);
 			MySqlDataAdapter^ sda = gcnew MySqlDataAdapter("select * from userinfotbl",con);
 			DataTable^ dt = gcnew DataTable();
@@ -358,7 +376,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 		 }
 		  // delete button click event
 private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
-			String^ constr = "Server=127.0.0.1;Uid=root;Pwd=*input your password here*;Database=visualcppdb;SslMode=none";
+			String^ constr = "Server=127.0.0.1;Uid=root;Pwd=*input your database password here* ;Database=visualcppdb";
 			MySqlConnection^ con = gcnew MySqlConnection(constr);
 			int id = Int32::Parse(textBox1->Text);
 			MySqlCommand^ cmd = gcnew MySqlCommand("delete from userinfotbl WHERE id="+id+"",con);
@@ -372,6 +390,38 @@ private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  
 private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void label5_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void button6_Click(System::Object^  sender, System::EventArgs^  e) {
+	int numCols = dataGridView1->ColumnCount;
+	int numRows = dataGridView1->RowCount - 1;
+	String ^strDestinationFile = "D:\\\\output.";
+	TextWriter ^tw = gcnew StreamWriter(strDestinationFile);
+	//writing the header
+	for (int count = 0; count < numCols; count++)
+	{
+		tw->Write(dataGridView1->Columns[count]->HeaderText);
+		if (count != numCols - 1)
+		{
+			tw->Write(", ");
+		}
+	}
+	tw->WriteLine();
+	for (int count = 0; count < numRows; count++)
+	{
+		for (int count2 = 0; count2 < numCols; count2++)
+		{
+			tw->Write(dataGridView1->Rows[count]->Cells[count2]->Value);
+			if (count2 != numCols)
+			{
+				tw->Write(", ");
+			}
+		}
+		tw->WriteLine();
+	}
+	tw->Close();
+}
+private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+
 }
 };
 }
