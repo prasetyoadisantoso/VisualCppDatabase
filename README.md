@@ -43,3 +43,5 @@ StdAfx.h, StdAfx.cpp
     named VisualCppDbProject.pch and a precompiled types file named StdAfx.obj.
 
 /////////////////////////////////////////////////////////////////////////////
+
+![alt text] (https://github.com/purashichiyo/VisualCppDatabase/blob/master/LICENSE)
