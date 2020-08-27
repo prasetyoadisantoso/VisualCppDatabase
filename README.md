@@ -1,4 +1,7 @@
 # VisualCppDatabase
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8e400438bbee440d88bb4013698b096c)](https://app.codacy.com/app/purashichiyo/VisualCppDatabase?utm_source=github.com&utm_medium=referral&utm_content=purashichiyo/VisualCppDatabase&utm_campaign=Badge_Grade_Dashboard)
+
 Simple Program C.R.U.D with C++ and MySql Database
 
 ![alt text](https://github.com/purashichiyo/VisualCppDatabase/blob/master/VisualCppDbProject/Portfolio.JPG)
